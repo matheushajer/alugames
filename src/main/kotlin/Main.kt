@@ -17,11 +17,10 @@ fun main() {
 
     println(json)
 
-    val meuJogo = Jogo()
-    meuJogo.titulo = "jogo teste"
-    meuJogo.capa = "url teste"
+    val meuJogo = Jogo("teste", "teste capa", "jogo teste")
+    val meuJogoNovo = Jogo(capa = "teste capa 2", titulo =  "teste 2", descricao =  "jogo teste 2")
 
     println(meuJogo)
-
+    println(meuJogoNovo)
 
 }
