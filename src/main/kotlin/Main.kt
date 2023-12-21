@@ -1,3 +1,4 @@
+import com.google.gson.Gson
 import java.net.URI
 import java.net.http.HttpClient
 import java.net.http.HttpRequest
@@ -17,10 +18,13 @@ fun main() {
 
     println(json)
 
-    val meuJogo = Jogo("teste", "teste capa", "jogo teste")
-    val meuJogoNovo = Jogo(capa = "teste capa 2", titulo =  "teste 2", descricao =  "jogo teste 2")
+    val gson = Gson()
 
+    val meuJogo = gson.fromJson(json, infoJogo::class.java)
+
+    println("=================")
     println(meuJogo)
-    println(meuJogoNovo)
+
+
 
 }
