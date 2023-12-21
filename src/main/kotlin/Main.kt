@@ -20,10 +20,13 @@ fun main() {
 
     val gson = Gson()
 
-    val meuJogo = gson.fromJson(json, infoJogo::class.java)
+    val meuInfoJogo = gson.fromJson(json, InfoJogo::class.java)
+
+    val meuJogo = Jogo(meuInfoJogo.info.title, meuInfoJogo.info.thumb, "Descrição teste")
 
     println("=================")
     println(meuJogo)
+
 
 
 
