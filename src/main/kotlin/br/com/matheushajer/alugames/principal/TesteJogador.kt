@@ -14,10 +14,13 @@ fun main() {
     jogador1.let {
         it.dataNascimento = "01/01/2000"
         it.usuario = "Jogador1_Super"
-        it.idInterno = "Jogador1_Super#12356"
     }
 
     println()
+    println(jogador1)
+
+    println()
+    jogador1.usuario = "Hajer"
     println(jogador1)
 
 

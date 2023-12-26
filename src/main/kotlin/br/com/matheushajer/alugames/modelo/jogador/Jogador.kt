@@ -5,8 +5,19 @@ import kotlin.random.Random
 data class Jogador(var nome: String, var email: String ) {
 
     var dataNascimento: String? = null
+
     var usuario: String? = null
+        set(value){
+            field = value
+            if (idInterno.isNullOrBlank()){
+                criarIdInterno()
+            }
+        }
+
     var idInterno: String? = null
+        private set
+
+
 
     //Construtores
     constructor(nome: String, email: String, dataNascimento: String, usuario: String): this(nome, email){
@@ -16,8 +27,8 @@ data class Jogador(var nome: String, var email: String ) {
     }
 
 
-    //Metodos
 
+    //Métodos
     /**
      * Método para criação do idInterno do Jogador
      */
