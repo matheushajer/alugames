@@ -7,14 +7,16 @@ fun main() {
 
     println()
 
-    val jogador2 = Jogador("Jogador dois", "jogador2@email.com", "01/01/1997",
-        "SuperJogador2")
+    val jogador2 = Jogador(
+        "Jogador dois", "jogador2@email.com", "01/01/1997",
+        "SuperJogador2"
+    )
     println(jogador2)
 
     jogador1.let {
         it.dataNascimento = "01/01/2000"
         it.usuario = "Jogador1_Super"
-    }
+    }.also { println(jogador1.idInterno) }
 
     println()
     println(jogador1)
