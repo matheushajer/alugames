@@ -60,9 +60,14 @@ data class Jogador(var nome: String, var email: String) {
     }
 
     init {
-        this.email = validarEmail()
-    }
 
+        if (nome.isBlank()){
+            throw IllegalArgumentException("Campo nome obrigatório")
+        }
+
+        this.email = validarEmail()
+
+    }
 
     override fun toString(): String {
         return "Dados do usuário: \n" +

@@ -1,3 +1,5 @@
+package br.com.matheushajer.alugames.principal
+
 import br.com.matheushajer.alugames.modelo.jogador.Jogador
 
 fun main() {
