@@ -1,11 +1,8 @@
-import com.google.gson.Gson
-import java.net.URI
-import java.net.http.HttpClient
-import java.net.http.HttpRequest
-import java.net.http.HttpResponse.BodyHandlers
-import java.util.*
+package br.com.matheushajer.alugames.principal
 
-const val URL_API_GAMES = "https://www.cheapshark.com/api/1.0/games?id="
+import br.com.matheushajer.alugames.modelo.Jogo
+import br.com.matheushajer.alugames.servicos.ConsumoAPI
+import java.util.*
 
 fun main() {
 
@@ -14,22 +11,13 @@ fun main() {
     print("Digite o código do jogo desejado: ")
     val busca = leitura.nextLine()
 
-    val client: HttpClient = HttpClient.newHttpClient()
-    val request = HttpRequest.newBuilder()
-        .uri(URI.create(URL_API_GAMES + busca)).build()
+    val buscaApi = ConsumoAPI()
+    val dadosJogo = buscaApi.buscarjogo(busca)
 
-    val response = client.send(request, BodyHandlers.ofString())
-
-    val json = response.body()
-
-    val gson = Gson()
-
-    var meuJogo:Jogo? = null
-
+    var meuJogo: Jogo? = null
     val resultadoDaBusca = runCatching {
 
-        val meuInfoJogo = gson.fromJson(json, InfoJogo::class.java)
-        meuJogo = Jogo(meuInfoJogo.info.title, meuInfoJogo.info.thumb)
+        meuJogo = Jogo(dadosJogo.info.title, dadosJogo.info.thumb)
 
     }
 
