@@ -1,5 +1,6 @@
 package br.com.matheushajer.alugames.modelo.jogador
 
+import br.com.matheushajer.alugames.modelo.Jogo
 import java.lang.IllegalArgumentException
 import kotlin.random.Random
 
@@ -17,6 +18,8 @@ data class Jogador(var nome: String, var email: String) {
 
     var idInterno: String? = null
         private set
+
+    val jogosPesquisados = mutableListOf<Jogo>()
 
     //////////////////////
     //Construtores
@@ -47,7 +50,7 @@ data class Jogador(var nome: String, var email: String) {
     /**
      * Método para validar se o e-mail informado é válido
      */
-    fun validarEmail(): String {
+    private fun validarEmail(): String {
 
         val regex = Regex("^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,6}$")
 
