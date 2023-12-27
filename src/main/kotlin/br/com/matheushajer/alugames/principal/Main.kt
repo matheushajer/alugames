@@ -1,8 +1,9 @@
 package br.com.matheushajer.alugames.principal
 
-import br.com.matheushajer.alugames.modelo.Jogo
+import br.com.matheushajer.alugames.modelo.jogo.Jogo
 import br.com.matheushajer.alugames.modelo.jogador.Jogador
 import br.com.matheushajer.alugames.servicos.ConsumoAPI
+import transformarEmIdade
 import java.util.*
 
 fun main() {
@@ -11,6 +12,7 @@ fun main() {
     val jogador = Jogador.criarJogador(leitura)
 
     println(jogador)
+    println("Idade  do usuário: " + jogador.dataNascimento?.transformarEmIdade())
 
     do {
 
@@ -54,12 +56,30 @@ fun main() {
 
     } while (resposta.equals("s", true))
 
+    jogador.jogosPesquisados.sortBy {
+        it?.titulo
+    }
+
     println("************************************************")
     println("Jogos Pesquisados: ")
     println(jogador.jogosPesquisados)
 
-
     println("Busca finalizada!")
+
+    println("************************************************")
+    println("Deseja remover algum jogo da lista (S/N)? ")
+
+    if (leitura.nextLine().equals("s", true)) {
+        println("Informe a posição do jogo a ser removido")
+        jogador.jogosPesquisados.removeAt(leitura.nextInt())
+
+        println("Remoção efetuada com sucesso!")
+
+    }
+
+    println("************************************************")
+    println("Lista atualizada:")
+    println(jogador.jogosPesquisados)
 
 
 }

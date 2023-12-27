@@ -1,4 +1,6 @@
-package br.com.matheushajer.alugames.modelo
+package br.com.matheushajer.alugames.modelo.jogo
+
+import br.com.matheushajer.alugames.modelo.api.InfoApiShark
 
 data class InfoJogo(val info: InfoApiShark) {
 

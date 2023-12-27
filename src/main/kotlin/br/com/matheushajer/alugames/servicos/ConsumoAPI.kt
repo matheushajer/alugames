@@ -1,6 +1,6 @@
 package br.com.matheushajer.alugames.servicos
 
-import br.com.matheushajer.alugames.modelo.InfoJogo
+import br.com.matheushajer.alugames.modelo.jogo.InfoJogo
 import com.google.gson.Gson
 import java.net.URI
 import java.net.http.HttpClient

@@ -1,4 +1,4 @@
-package br.com.matheushajer.alugames.modelo
+package br.com.matheushajer.alugames.modelo.jogo
 
 data class Jogo(val titulo: String, val capa: String) {
 

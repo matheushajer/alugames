@@ -1,6 +1,6 @@
 package br.com.matheushajer.alugames.modelo.jogador
 
-import br.com.matheushajer.alugames.modelo.Jogo
+import br.com.matheushajer.alugames.modelo.jogo.Jogo
 import java.util.*
 import kotlin.random.Random
 
