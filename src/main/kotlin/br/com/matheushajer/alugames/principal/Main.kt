@@ -1,14 +1,20 @@
 package br.com.matheushajer.alugames.principal
 
 import br.com.matheushajer.alugames.modelo.Jogo
+import br.com.matheushajer.alugames.modelo.jogador.Jogador
 import br.com.matheushajer.alugames.servicos.ConsumoAPI
 import java.util.*
 
 fun main() {
 
     val leitura = Scanner(System.`in`)
+    val jogador = Jogador.criarJogador(leitura)
+
+    println(jogador)
 
     do {
+
+        println("************************************************")
         print("Digite o código do jogo desejado: ")
         val busca = leitura.nextLine()
 
@@ -32,23 +38,26 @@ fun main() {
             val opcao = leitura.nextLine()
 
             if (opcao.equals("s", true)) {
-                println()
+                println("************************************************")
                 print("Digite a descrição: ")
                 meuJogo?.descricao = leitura.nextLine()
 
             } else {
                 meuJogo?.descricao = meuJogo?.titulo
             }
-        }
 
-        println()
-        println(meuJogo)
-        println()
+            jogador.jogosPesquisados.add(meuJogo)
+        }
 
         print("Deseja procurar por um novo jogo? S/N: ")
         val resposta = leitura.nextLine()
 
     } while (resposta.equals("s", true))
+
+    println("************************************************")
+    println("Jogos Pesquisados: ")
+    println(jogador.jogosPesquisados)
+
 
     println("Busca finalizada!")
 
