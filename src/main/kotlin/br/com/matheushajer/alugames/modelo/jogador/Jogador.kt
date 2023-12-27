@@ -1,6 +1,9 @@
 package br.com.matheushajer.alugames.modelo.jogador
 
+import br.com.matheushajer.alugames.modelo.aluguel.Aluguel
+import br.com.matheushajer.alugames.modelo.aluguel.Periodo
 import br.com.matheushajer.alugames.modelo.jogo.Jogo
+import java.time.LocalDate
 import java.util.*
 import kotlin.random.Random
 
@@ -20,6 +23,8 @@ data class Jogador(var nome: String, var email: String) {
         private set
 
     val jogosPesquisados = mutableListOf<Jogo?>()
+
+    val jogosAlugados = mutableListOf<Aluguel>()
 
     //////////////////////
     //Construtores
@@ -59,6 +64,21 @@ data class Jogador(var nome: String, var email: String) {
         } else {
             throw IllegalArgumentException("E-mail informado é inválido")
         }
+
+    }
+
+
+    /**
+     * Método para a função alugar um jogo
+     * @return um objeto do tipo Aluguel, com os dados do jogador e
+     * do Jogo alugado
+     */
+    fun alugarJogo(jogo: Jogo, periodo: Periodo): Aluguel {
+
+        val aluguel = Aluguel(this, jogo, periodo)
+        jogosAlugados.add(aluguel)
+
+        return aluguel
 
     }
 
