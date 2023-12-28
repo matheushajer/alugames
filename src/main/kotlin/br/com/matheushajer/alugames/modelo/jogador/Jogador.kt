@@ -28,6 +28,7 @@ data class Jogador(var nome: String, var email: String) : Recomendavel {
     val jogosPesquisados = mutableListOf<Jogo?>()
     val jogosAlugados = mutableListOf<Aluguel>()
     private val listaDeNotas = mutableListOf<Int>()
+    val jogosRecomendados = mutableListOf<Jogo>()
 
     override val media: Double
         get() = listaDeNotas.average()
@@ -112,7 +113,16 @@ data class Jogador(var nome: String, var email: String) : Recomendavel {
         } else{
             println("A nota $nota esta inválida, inserir uma nova válida!")
         }
+    }
 
+    /**
+     * Método para efetuar recomendação de um Jogo e atribuir uma nota
+     * @param jogo
+     * @param nota
+     */
+    fun recomendarJogo(jogo: Jogo, nota: Int){
+        jogo.recomendar(nota)
+        jogosRecomendados.add(jogo)
     }
 
     //////////////////////

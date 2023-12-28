@@ -1,9 +1,17 @@
 package br.com.matheushajer.alugames.modelo.jogo
 
-data class Jogo(val titulo: String, val capa: String) {
+import br.com.matheushajer.alugames.modelo.recomendacao.Recomendavel
+import com.google.gson.annotations.Expose
+
+data class Jogo(@Expose val titulo: String, @Expose val capa: String): Recomendavel {
 
     var descricao: String? = null
     var preco : Double = 0.0
+
+    private val listaDeNotas = mutableListOf<Int>()
+
+    override val media: Double
+        get() = listaDeNotas.average()
 
     //////////////////////
     //Construtores
@@ -14,12 +22,30 @@ data class Jogo(val titulo: String, val capa: String) {
         this.preco = preco
     }
 
+    //////////////////////
+    //Métodos
+    //////////////////////
+
+    /**
+     * Método para atribuir uma nota ao Jogo
+     * @param nota
+     */
+    override fun recomendar(nota: Int) {
+
+        if(nota in 1..10){
+            listaDeNotas.add(nota)
+        } else{
+            println("A nota $nota esta inválida, inserir uma nova válida!")
+        }
+    }
+
     override fun toString(): String {
         return "Dados do Jogo: \n" +
                 "Titulo: $titulo \n" +
                 "Capa: $capa \n" +
                 "Preço: R$$preco \n" +
-                "Descricao: $descricao"
+                "Descricao: $descricao \n" +
+                "Nota: $media"
     }
 
 

@@ -3,6 +3,8 @@ package br.com.matheushajer.alugames.principal
 import br.com.matheushajer.alugames.modelo.aluguel.Periodo
 import br.com.matheushajer.alugames.modelo.plano.PlanoAssinatura
 import br.com.matheushajer.alugames.servicos.ConsumoAPI
+import com.google.gson.GsonBuilder
+import java.io.File
 import java.time.LocalDate
 
 fun main() {
@@ -75,6 +77,25 @@ fun main() {
         println(it)
         println()
     }
+
+    // Testtando avaliar Jogo
+    jogador2.recomendarJogo(jogo1, 10)
+    jogador2.recomendarJogo(jogo3, 8)
+    println(jogador2.jogosRecomendados)
+
+    // Construindo Json
+    println("************************************************")
+    val gson = GsonBuilder().excludeFieldsWithoutExposeAnnotation().create()
+
+    val serializacao = gson.toJson(jogador2.jogosRecomendados)
+
+    println(serializacao)
+
+    val arquivo = File("jogosRecomendados.json")
+    arquivo.writeText(serializacao)
+
+
+
 
 
 
