@@ -6,7 +6,7 @@ import br.com.matheushajer.alugames.modelo.jogo.Jogo
 data class Aluguel(
     val jogador: Jogador, val jogo: Jogo, val periodo: Periodo) {
 
-    val valorDoAlguel = jogo.preco * periodo.valorEmDias
+    val valorDoAlguel = jogador.plano.obterValorDoAluguel(this)
 
     override fun toString(): String {
         return "Dados do Aluguel \n" +

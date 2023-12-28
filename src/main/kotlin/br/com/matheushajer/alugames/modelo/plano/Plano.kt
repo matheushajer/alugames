@@ -1,0 +1,16 @@
+package br.com.matheushajer.alugames.modelo.plano
+
+import br.com.matheushajer.alugames.modelo.aluguel.Aluguel
+
+open class Plano(val tipo: String) {
+
+    /**
+     * Método para calcular o valor pago ao alugar jogos
+     * @param aluguel
+     * @return um Double representando o valor total a serpago
+     */
+    open fun obterValorDoAluguel(aluguel: Aluguel): Double {
+        return aluguel.jogo.preco * aluguel.periodo.valorEmDias
+    }
+
+}

@@ -3,6 +3,8 @@ package br.com.matheushajer.alugames.modelo.jogador
 import br.com.matheushajer.alugames.modelo.aluguel.Aluguel
 import br.com.matheushajer.alugames.modelo.aluguel.Periodo
 import br.com.matheushajer.alugames.modelo.jogo.Jogo
+import br.com.matheushajer.alugames.modelo.plano.Plano
+import br.com.matheushajer.alugames.modelo.plano.PlanoAvulso
 import java.time.LocalDate
 import java.util.*
 import kotlin.random.Random
@@ -22,8 +24,8 @@ data class Jogador(var nome: String, var email: String) {
     var idInterno: String? = null
         private set
 
+    var plano: Plano = Plano("BRONZE")
     val jogosPesquisados = mutableListOf<Jogo?>()
-
     val jogosAlugados = mutableListOf<Aluguel>()
 
     //////////////////////
@@ -53,7 +55,7 @@ data class Jogador(var nome: String, var email: String) {
     }
 
     /**
-     * Método para validar se o e-mail informado é válido
+     * Método para validar se o E-mail informado é válido
      */
     private fun validarEmail(): String {
 
@@ -96,7 +98,6 @@ data class Jogador(var nome: String, var email: String) {
         }
 
     }
-
 
     //////////////////////
     //init
