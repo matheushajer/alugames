@@ -46,7 +46,7 @@ fun main() {
 
     //Testes usando o jogador2
     println("************************************************")
-    jogador2.plano = PlanoAssinatura("PLATA", 9.90, 3)
+    jogador2.plano = PlanoAssinatura("PLATA", 9.90, 3, 0.15)
 
     jogador2.alugarJogo(jogo3,periodo3)
     jogador2.alugarJogo(jogo5, periodo3)
@@ -54,6 +54,23 @@ fun main() {
     jogador2.alugarJogo(jogo1, periodo3)
 
     println("************************************************")
+    jogador2.jogosAlugados.forEach {
+        println(it)
+        println()
+    }
+
+    // Testando recomendação
+    jogador2.recomendar(8)
+    jogador2.recomendar(8)
+    jogador2.recomendar(9)
+
+    println("************************************************")
+    println(jogador2)
+
+    // Testando desconto, com base na recomendação
+    println("************************************************")
+    jogador2.alugarJogo(jogo1, periodo3)
+
     jogador2.jogosAlugados.forEach {
         println(it)
         println()

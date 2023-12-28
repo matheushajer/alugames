@@ -5,11 +5,11 @@ import br.com.matheushajer.alugames.modelo.aluguel.Periodo
 import br.com.matheushajer.alugames.modelo.jogo.Jogo
 import br.com.matheushajer.alugames.modelo.plano.Plano
 import br.com.matheushajer.alugames.modelo.plano.PlanoAvulso
-import java.time.LocalDate
+import br.com.matheushajer.alugames.modelo.recomendacao.Recomendavel
 import java.util.*
 import kotlin.random.Random
 
-data class Jogador(var nome: String, var email: String) {
+data class Jogador(var nome: String, var email: String) : Recomendavel {
 
     var dataNascimento: String? = null
 
@@ -24,9 +24,13 @@ data class Jogador(var nome: String, var email: String) {
     var idInterno: String? = null
         private set
 
-    var plano: Plano = Plano("BRONZE")
+    var plano: Plano = PlanoAvulso("BRONZE")
     val jogosPesquisados = mutableListOf<Jogo?>()
     val jogosAlugados = mutableListOf<Aluguel>()
+    private val listaDeNotas = mutableListOf<Int>()
+
+    override val media: Double
+        get() = listaDeNotas.average()
 
     //////////////////////
     //Construtores
@@ -55,7 +59,7 @@ data class Jogador(var nome: String, var email: String) {
     }
 
     /**
-     * Método para validar se o E-mail informado é válido
+     * Método para validar se o endereço eletrónico informado é válido
      */
     private fun validarEmail(): String {
 
@@ -68,7 +72,6 @@ data class Jogador(var nome: String, var email: String) {
         }
 
     }
-
 
     /**
      * Método para a função alugar um jogo
@@ -96,7 +99,14 @@ data class Jogador(var nome: String, var email: String) {
         }.map {
             it.jogo
         }
+    }
 
+    /**
+     * Método para atribuir uma nota ao Jogador
+     * @param nota
+     */
+    override fun recomendar(nota: Int) {
+        listaDeNotas.add(nota)
     }
 
     //////////////////////
@@ -114,7 +124,9 @@ data class Jogador(var nome: String, var email: String) {
 
     override fun toString(): String {
         return "Dados do usuário: \n" +
-                "(Nome: $nome, E-mail: $email, Data de Nascimento: $dataNascimento, Usuário=$usuario, idInterno=$idInterno)"
+                "(Nome: $nome, E-mail: $email, Data de Nascimento: $dataNascimento, " +
+                "Usuário=$usuario, idInterno=$idInterno) \n" +
+                "Reputação: $media"
     }
 
     //////////////////////

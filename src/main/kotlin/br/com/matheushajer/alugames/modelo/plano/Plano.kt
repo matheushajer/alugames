@@ -2,7 +2,7 @@ package br.com.matheushajer.alugames.modelo.plano
 
 import br.com.matheushajer.alugames.modelo.aluguel.Aluguel
 
-open class Plano(val tipo: String) {
+sealed class Plano(val tipo: String) {
 
     /**
      * Método para calcular o valor pago ao alugar jogos
