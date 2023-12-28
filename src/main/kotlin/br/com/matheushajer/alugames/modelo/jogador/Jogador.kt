@@ -82,6 +82,25 @@ data class Jogador(var nome: String, var email: String) {
 
     }
 
+    /**
+     * Método para filtrar os jogos alugados em determinado mês
+     * @param mes
+     * @return uma lista de Jogo, com os jogos do mes informado
+     */
+    fun jogosAlugadosNoMes(mes: Int): List<Jogo> {
+
+        return jogosAlugados.filter {
+            it.periodo.dataInicial.monthValue == mes
+        }.map {
+            it.jogo
+        }
+
+    }
+
+
+    //////////////////////
+    //init
+    //////////////////////
     init {
 
         if (nome.isBlank()) {
