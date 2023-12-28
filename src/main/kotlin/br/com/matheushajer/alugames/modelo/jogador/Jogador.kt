@@ -106,7 +106,13 @@ data class Jogador(var nome: String, var email: String) : Recomendavel {
      * @param nota
      */
     override fun recomendar(nota: Int) {
-        listaDeNotas.add(nota)
+
+        if(nota in 1..10){
+            listaDeNotas.add(nota)
+        } else{
+            println("A nota $nota esta inválida, inserir uma nova válida!")
+        }
+
     }
 
     //////////////////////
