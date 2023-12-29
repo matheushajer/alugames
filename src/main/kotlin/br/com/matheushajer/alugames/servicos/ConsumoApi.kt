@@ -23,6 +23,7 @@ class ConsumoAPI {
     /**
      * Método para efetuar a chamada das APIs
      * Devolvendo o retorno no formado String
+     * @param endereco
      * @return reponse com os dados do Json
      */
     private fun consomeDadosApi(endereco: String): String {
@@ -39,6 +40,7 @@ class ConsumoAPI {
      * Método para busca dos dados de Jogos da API, recebe um InfoJogo
      * e converte para um objeto do tipo Jogo.
      * Pesquisa é efetuada pelo id do Jogo
+     * @param id
      * @return Jogo com os dados do Jogo
      */
     fun buscarjogo(id: String): InfoJogo {
@@ -72,7 +74,9 @@ class ConsumoAPI {
 
     }
 
-
+    /**
+     * Método que busca a lista de jogos da API
+     */
     fun buscarJogos(): List<Jogo>{
 
         val json = consomeDadosApi(URL_API_JOGOS)

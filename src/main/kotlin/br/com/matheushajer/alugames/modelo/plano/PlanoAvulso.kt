@@ -2,7 +2,7 @@ package br.com.matheushajer.alugames.modelo.plano
 
 import br.com.matheushajer.alugames.modelo.aluguel.Aluguel
 
-class PlanoAvulso(tipo: String) : Plano(tipo) {
+class PlanoAvulso(tipo: String, id : Int = 0) : Plano(tipo, id) {
 
     override fun obterValorDoAluguel(aluguel: Aluguel): Double {
 

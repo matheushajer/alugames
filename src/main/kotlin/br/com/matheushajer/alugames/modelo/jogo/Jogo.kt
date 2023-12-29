@@ -5,6 +5,7 @@ import com.google.gson.annotations.Expose
 
 data class Jogo(@Expose val titulo: String, @Expose val capa: String): Recomendavel {
 
+    var id : Int = 0
     var descricao: String? = null
     var preco : Double = 0.0
 
@@ -17,9 +18,10 @@ data class Jogo(@Expose val titulo: String, @Expose val capa: String): Recomenda
     //Construtores
     //////////////////////
 
-    constructor(titulo: String, capa: String, descricao: String, preco: Double) : this (titulo, capa){
+    constructor(titulo: String, capa: String, descricao: String, preco: Double, id: Int = 0) : this (titulo, capa){
         this.descricao = descricao
         this.preco = preco
+        this.id = id
     }
 
     //////////////////////

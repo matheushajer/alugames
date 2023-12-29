@@ -4,8 +4,8 @@ import br.com.matheushajer.alugames.modelo.aluguel.Aluguel
 
 class PlanoAssinatura(
     tipo: String, val mensalidade: Double, val quantidadeDeJogosIncluidos: Int,
-    val percentualDescontoReputacao: Double
-) : Plano(tipo) {
+    val percentualDescontoReputacao: Double, id : Int = 0
+) : Plano(tipo, id) {
 
     override fun obterValorDoAluguel(aluguel: Aluguel): Double {
 

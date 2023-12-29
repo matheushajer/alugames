@@ -11,6 +11,7 @@ import kotlin.random.Random
 
 data class Jogador(var nome: String, var email: String) : Recomendavel {
 
+    var id : Int = 0
     var dataNascimento: String? = null
 
     var usuario: String? = null
