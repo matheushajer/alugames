@@ -2,10 +2,12 @@ package br.com.matheushajer.alugames.modelo.jogo
 
 import br.com.matheushajer.alugames.modelo.recomendacao.Recomendavel
 import com.google.gson.annotations.Expose
+import javax.persistence.*
 
 data class Jogo(@Expose val titulo: String, @Expose val capa: String): Recomendavel {
 
     var id : Int = 0
+
     var descricao: String? = null
     var preco : Double = 0.0
 

@@ -1,39 +1,24 @@
 package br.com.matheushajer.alugames.dados
 
 import br.com.matheushajer.alugames.modelo.jogo.Jogo
+import javax.persistence.EntityManager
 
-class JogosDAO {
+class JogosDAO(val manager: EntityManager) {
 
     /**
      * Método que cria uma lista com todos os Jogos cadastrados no banco
      */
     fun getJogos(): List<Jogo> {
-        val listaJogos = mutableListOf<Jogo>()
-        val conexao = Banco.obterConexao()
 
-        if (conexao != null) {
-            try {
-                val statement = conexao.createStatement()
-                val resultado = statement.executeQuery("SELECT * FROM JOGOS")
-
-                while (resultado.next()) {
-                    val id = resultado.getInt("id")
-                    val titulo = resultado.getString("titulo")
-                    val capa = resultado.getString("capa")
-                    val descricao = resultado.getString("descricao")
-                    val preco = resultado.getDouble("preco")
-
-                    val jogo = Jogo(titulo, capa, preco, descricao, id)
-                    listaJogos.add(jogo)
-                }
-
-                statement.close()
-            } finally {
-                conexao.close()
-            }
+        val query = manager.createQuery("FROM JogoEntity", JogoEntity::class.java)
+        return query.resultList.map { jogoEntity ->
+            Jogo(
+                jogoEntity.titulo, jogoEntity.capa, jogoEntity.preco,
+                jogoEntity.descricao, jogoEntity.id
+            )
         }
 
-        return listaJogos
+
     }
 
     /**
@@ -42,26 +27,11 @@ class JogosDAO {
      */
     fun adicionarJogo(jogo: Jogo) {
 
-        val conexao = Banco.obterConexao()
-        val insert = "INSERT INTO JOGOS (TITULO, CAPA, PRECO, DESCRICAO) VALUES (?, ?, ?, ?)"
+        val entity = jogo.descricao?.let { JogoEntity(jogo.titulo, jogo.capa, jogo.preco, it) }
 
-       if (conexao != null){
-           try {
-
-               val statement = conexao.prepareStatement(insert)
-
-               statement.setString(1, jogo.titulo)
-               statement.setString(2, jogo.capa)
-               statement.setDouble(3, jogo.preco)
-               statement.setString(4, jogo.descricao)
-
-               statement.executeUpdate()
-               statement.close()
-           } finally {
-               conexao.close()
-           }
-       }
-
+        manager.transaction.begin()
+        manager.persist(entity)
+        manager.transaction.commit()
 
     }
 
