@@ -20,7 +20,7 @@ data class Jogo(@Expose val titulo: String, @Expose val capa: String): Recomenda
     //Construtores
     //////////////////////
 
-    constructor(titulo: String, capa: String, preco: Double, descricao: String, id: Int = 0) : this (titulo, capa){
+    constructor(titulo: String, capa: String, preco: Double, descricao: String?, id: Int = 0) : this (titulo, capa){
         this.descricao = descricao
         this.preco = preco
         this.id = id
@@ -45,6 +45,7 @@ data class Jogo(@Expose val titulo: String, @Expose val capa: String): Recomenda
 
     override fun toString(): String {
         return "Dados do Jogo: \n" +
+                "ID: $id \n" +
                 "Titulo: $titulo \n" +
                 "Capa: $capa \n" +
                 "Preço: R$$preco \n" +
